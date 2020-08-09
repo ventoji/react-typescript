@@ -17,6 +17,7 @@ import LoginPage from "./LoginPage";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Header from "./Header";
+import ContactUsPage from "./ContactUsPage";
 
 const RoutesWrap: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const Routes: React.FC<RouteComponentProps> = (props) => {
             <Redirect exact={true} from="/" to="/products" />
             <Route exact={true} path="/products" component={ProductsPage} />
             <Route path="/products/:id" component={ProductPage} />
+            <Route path="/contactus" component={ContactUsPage} />
             <Route path="/admin">
               {loggedIn ? (
                 <Suspense
