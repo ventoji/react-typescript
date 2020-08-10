@@ -1,9 +1,13 @@
 import { ActionCreator, AnyAction, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { getProducts as getProductsFromAPI } from "../ProductsData";
+import {
+  getProduct as getProductFromAPI,
+  getProducts as getProductsFromAPI
+} from "../ProductsData";
 
 import {
   IProductsGetAllAction,
+  IProductsGetSingleAction,
   IProductsLoadingAction,
   IProductsState,
   ProductsActionTypes
@@ -31,6 +35,22 @@ export const getProducts: ActionCreator<ThunkAction<
     return dispatch({
       products,
       type: ProductsActionTypes.GETALL
+    });
+  };
+};
+
+export const getProduct: ActionCreator<ThunkAction<
+  Promise<any>,
+  IProductsState,
+  null,
+  IProductsGetSingleAction
+>> = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(loading());
+    const product = await getProductFromAPI(id);
+    dispatch({
+      product,
+      type: ProductsActionTypes.GETSINGLE
     });
   };
 };
