@@ -3,10 +3,55 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+//import ApolloClient from "apollo-boost";
+// import { ApolloProvider } from "react-apollo";
+import {
+  ApolloClient,
+  InMemoryCache,
+  //createHttpLink,
+  ApolloProvider
+} from "@apollo/client";
+// import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
+const cache = new InMemoryCache();
+/* const link = createHttpLink({
+  uri: 'https://api.github.com/graphql',
+}); */
+const client = new ApolloClient({
+  uri: "https://api.github.com/graphql",
+  cache: cache,
+  headers: {
+    authorization: `Bearer 24a4bad021c5b09324e332c0d74afbbccc64b0d6`
+  }
+});
+
+/* // Instantiate required constructor fields
+const cache = new InMemoryCache();
+const link = createHttpLink({
+  uri: "https://api.github.com/graphql"
+});
+
+const client = new ApolloClient({
+  // Provide required constructor fields
+  cache: cache,
+  link: link,
+
+  // Provide some optional constructor fields
+  name: "react-web-client",
+  version: "1.3",
+  queryDeduplication: false,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: "cache-and-network"
+    }
+  }
+}); */
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

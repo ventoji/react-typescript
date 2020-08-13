@@ -42,6 +42,7 @@ class Header extends React.Component<IProps, IState> {
         </div>
         <img src={logo} className="header-logo" alt="logo" />
         <h1 className="header-title">React Shop</h1>
+
         <nav>
           <NavLink
             to="/products"
