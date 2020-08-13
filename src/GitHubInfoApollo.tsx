@@ -31,7 +31,7 @@ export const GitHubInfoApollo: React.FC = () => {
 
       {loading ? (
         <div className="viewer">Loading ...</div>
-      ) : (
+      ) : !data ? null : (
         <div>
           <img src={data.viewer.avatarUrl} className="avatar" alt="avatar" />
           <div className="viewer">{data.viewer.name}</div>

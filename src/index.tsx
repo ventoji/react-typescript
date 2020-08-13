@@ -15,13 +15,14 @@ import {
 
 const cache = new InMemoryCache();
 /* const link = createHttpLink({
-  uri: 'https://api.github.com/graphql',
+  uri: "https://api.github.com/graphql"
 }); */
 const client = new ApolloClient({
   uri: "https://api.github.com/graphql",
   cache: cache,
+  // link: link,
   headers: {
-    authorization: `Bearer 24a4bad021c5b09324e332c0d74afbbccc64b0d6`
+    authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
   }
 });
 
